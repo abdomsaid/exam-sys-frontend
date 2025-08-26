@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@theme {
+  /* colors */
+  --skyBlueGradient: linear-gradient(to right, #4a90e2, #7b4397);
+  --color-blueBg: #4a90e2;
+  --color-hoverBg: #7b4397;
+  --color-skyblue: linear-gradient(to right, #4a90e2, #7b4397);
+  /* shadows */
+  --shadow-CShadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /**/
+  --background-skyBlueGradient: linear-gradient(to right, #4a90e2, #7b4397);
+}

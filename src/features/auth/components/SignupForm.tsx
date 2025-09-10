@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import FooterLink from './FooterLink'
 import SubmitButton from './SubmitButton'
 import { users } from '@/data'
+import ErrorMsg from '@/shared/ErrorMsg'
 
 export default function SignupForm() {
   const navigation = useNavigate()
@@ -21,7 +22,11 @@ export default function SignupForm() {
     if (isValid) {
       data.fullName = data.fullName.trim()
       data.username = data.username.trim()
+      data.role = 'student'
+      delete data.confirmPassword
+
       users.push(data)
+      navigation({ to: '/login' })
       console.log(users)
     }
   }
@@ -30,7 +35,7 @@ export default function SignupForm() {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         {errors.fullName && (
-          <h1 className="text-red-500">{errors.fullName.message as string}</h1>
+          <ErrorMsg msg={errors.fullName.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.fullName ? 'border-red-500' : ''}`}
@@ -39,7 +44,7 @@ export default function SignupForm() {
           {...register('fullName', { required: 'Full name is required.' })}
         />
         {errors.username && (
-          <h1 className="text-red-500">{errors.username.message as string}</h1>
+          <ErrorMsg msg={errors.username.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.username ? 'border-red-500' : ''}`}
@@ -47,7 +52,7 @@ export default function SignupForm() {
           {...register('username', { required: 'User name is required.' })}
         />
         {errors.password && (
-          <h1 className="text-red-500">{errors.password.message as string}</h1>
+          <ErrorMsg msg={errors.password.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.password ? 'border-red-500' : ''}`}
@@ -60,9 +65,7 @@ export default function SignupForm() {
           })}
         />
         {errors.confirmPassword && (
-          <h1 className="text-red-500">
-            {errors.confirmPassword.message as string}
-          </h1>
+          <ErrorMsg msg={errors.confirmPassword.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.confirmPassword ? 'border-red-500' : ''}`}

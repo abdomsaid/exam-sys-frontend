@@ -21,15 +21,20 @@ export default function LoginForm() {
     if (isValid) {
       const user = users.find((u) => u.username.trim() === data.username)
       if (user && user.password === data.password) {
-        delete (user as { [key: string]: any }).password
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            username: user.username,
+            role: user.role,
+            fullName: user.fullName,
+          }),
+        )
         navigation({ to: '/' })
       } else {
         setError('username', { message: 'Incorrect username or password.' })
       }
     }
   }
-  console.log(errors)
   return (
     <>
       {errors.username && errors.username.type !== 'required' && (

@@ -6,6 +6,7 @@ export default function SideBar() {
       <div className="text-white text-3xl mt-5 font-bold ">ExamSys</div>
       <div className="flex flex-col gap-5 mt-10">
         <SideBarLink title="Exams" />
+        <SideBarLink title="Questions" />
       </div>
     </aside>
   )

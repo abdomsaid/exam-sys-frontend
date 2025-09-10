@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import ExamsForm from '@/features/dashboard/components/ExamsForm'
+import type { ExamType } from '@/shared/types'
+import ExamsForm from '@/features/exams/components/ExamsForm'
+import ExamsTable from '@/features/exams/components/ExamsTable'
+import { exams } from '@/data'
 
 type State = 'add-exam' | 'view-exams'
 
 export default function ExamsPage() {
   const [activeTab, setActiveTab] = useState<State>('add-exam')
+  const [examsList, setExamsList] = useState<Array<ExamType>>(exams)
+
   return (
     <>
       <div className=" p-8 w-full border-2 border-gray-200 rounded-xl">
@@ -31,11 +36,32 @@ export default function ExamsPage() {
           </button>
         </div>
 
-        <div className="mt-11 p-5">
-          {activeTab == 'add-exam' && <ExamsForm />}
-          {activeTab == 'view-exams' && 'exams list'}
+        <div className="mt-3 ">
+          {activeTab === 'add-exam' ? (
+            <ExamsForm
+              type="add"
+              setExamsList={setExamsList}
+              examsListLength={examsList.length}
+            />
+          ) : (
+            <ExamsTable examsList={examsList} setExamsList={setExamsList} />
+          )}
         </div>
       </div>
     </>
   )
 }
+// {
+//   activeTab == 'add-exam' && (
+//     <ExamsForm
+//       type="add"
+//       setExamsList={setExamsList}
+//       examsListLength={examsList.length}
+//     />
+//   )
+// }
+// {
+//   activeTab == 'view-exams' && (
+//     <ExamsTable examsList={examsList} setExamsList={setExamsList} />
+//   )
+// }

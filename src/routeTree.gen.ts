@@ -14,6 +14,7 @@ import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as Dashboard_layoutIndexRouteImport } from './routes/_dashboard/__layout.index'
 import { Route as Dashboard_layoutSettingsRouteImport } from './routes/_dashboard/__layout.settings'
+import { Route as Dashboard_layoutQuestionsRouteImport } from './routes/_dashboard/__layout.questions'
 import { Route as Dashboard_layoutExamsRouteImport } from './routes/_dashboard/__layout.exams'
 
 const Dashboard_layoutRoute = Dashboard_layoutRouteImport.update({
@@ -41,6 +42,12 @@ const Dashboard_layoutSettingsRoute =
     path: '/settings',
     getParentRoute: () => Dashboard_layoutRoute,
   } as any)
+const Dashboard_layoutQuestionsRoute =
+  Dashboard_layoutQuestionsRouteImport.update({
+    id: '/questions',
+    path: '/questions',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
 const Dashboard_layoutExamsRoute = Dashboard_layoutExamsRouteImport.update({
   id: '/exams',
   path: '/exams',
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
   '/exams': typeof Dashboard_layoutExamsRoute
+  '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
   '/exams': typeof Dashboard_layoutExamsRoute
+  '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
@@ -67,20 +76,22 @@ export interface FileRoutesById {
   '/_auth/signup': typeof AuthSignupRoute
   '/_dashboard/__layout': typeof Dashboard_layoutRouteWithChildren
   '/_dashboard/__layout/exams': typeof Dashboard_layoutExamsRoute
+  '/_dashboard/__layout/questions': typeof Dashboard_layoutQuestionsRoute
   '/_dashboard/__layout/settings': typeof Dashboard_layoutSettingsRoute
   '/_dashboard/__layout/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/signup' | '/exams' | '/settings' | '/'
+  fullPaths: '/login' | '/signup' | '/exams' | '/questions' | '/settings' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/signup' | '/exams' | '/settings' | '/'
+  to: '/login' | '/signup' | '/exams' | '/questions' | '/settings' | '/'
   id:
     | '__root__'
     | '/_auth/login'
     | '/_auth/signup'
     | '/_dashboard/__layout'
     | '/_dashboard/__layout/exams'
+    | '/_dashboard/__layout/questions'
     | '/_dashboard/__layout/settings'
     | '/_dashboard/__layout/'
   fileRoutesById: FileRoutesById
@@ -128,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Dashboard_layoutSettingsRouteImport
       parentRoute: typeof Dashboard_layoutRoute
     }
+    '/_dashboard/__layout/questions': {
+      id: '/_dashboard/__layout/questions'
+      path: '/questions'
+      fullPath: '/questions'
+      preLoaderRoute: typeof Dashboard_layoutQuestionsRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
     '/_dashboard/__layout/exams': {
       id: '/_dashboard/__layout/exams'
       path: '/exams'
@@ -140,12 +158,14 @@ declare module '@tanstack/react-router' {
 
 interface Dashboard_layoutRouteChildren {
   Dashboard_layoutExamsRoute: typeof Dashboard_layoutExamsRoute
+  Dashboard_layoutQuestionsRoute: typeof Dashboard_layoutQuestionsRoute
   Dashboard_layoutSettingsRoute: typeof Dashboard_layoutSettingsRoute
   Dashboard_layoutIndexRoute: typeof Dashboard_layoutIndexRoute
 }
 
 const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
   Dashboard_layoutExamsRoute: Dashboard_layoutExamsRoute,
+  Dashboard_layoutQuestionsRoute: Dashboard_layoutQuestionsRoute,
   Dashboard_layoutSettingsRoute: Dashboard_layoutSettingsRoute,
   Dashboard_layoutIndexRoute: Dashboard_layoutIndexRoute,
 }

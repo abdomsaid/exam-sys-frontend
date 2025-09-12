@@ -7,6 +7,7 @@ type Props = {
   questionsList: Array<QuestionsType>
   setQuestionsList: React.Dispatch<React.SetStateAction<Array<QuestionsType>>>
 }
+
 export default function QuestionsList({
   questionsList,
   setQuestionsList,

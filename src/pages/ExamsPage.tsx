@@ -5,7 +5,7 @@ import ExamsTable from '@/features/exams/components/ExamsTable'
 import { exams } from '@/data'
 
 type State = 'add-exam' | 'view-exams'
-
+// TODO make add and delete here reference with functions
 export default function ExamsPage() {
   const [activeTab, setActiveTab] = useState<State>('add-exam')
   const [examsList, setExamsList] = useState<Array<ExamType>>(exams)

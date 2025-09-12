@@ -6,4 +6,5 @@ export const Route = createRootRoute({
       <Outlet />
     </>
   ),
+  errorComponent: () => <div>Not found</div>,
 })

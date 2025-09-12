@@ -13,6 +13,7 @@ export default function SignupForm() {
     formState: { errors },
     trigger,
     watch,
+    setError,
   } = useForm()
 
   const inputStyle = 'w-full border rounded my-2 p-3 border-[#ddd] border-solid'
@@ -20,14 +21,18 @@ export default function SignupForm() {
   const onSubmit = async (data: any) => {
     const isValid = await trigger()
     if (isValid) {
+      const existingUser = users.find(
+        (u) => u.username.trim() === data.username,
+      )
+      if (existingUser) {
+        throw setError('username', { message: 'Username already exists.' })
+      }
       data.fullName = data.fullName.trim()
       data.username = data.username.trim()
       data.role = 'student'
       delete data.confirmPassword
-
       users.push(data)
       navigation({ to: '/login' })
-      console.log(users)
     }
   }
 

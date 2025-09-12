@@ -6,7 +6,7 @@ import QuestionsList from '@/features/questions/components/QuestionsList'
 import QuestionForm from '@/features/questions/components/QuestionForm'
 
 type State = 'add-questions' | 'view-questions'
-
+// TODO make add and delete here reference with functions
 export default function QuestionsPage() {
   const [activeTab, setActiveTab] = useState<State>('add-questions')
   const [questionsList, setQuestionsList] =

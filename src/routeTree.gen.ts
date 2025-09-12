@@ -13,6 +13,7 @@ import { Route as Dashboard_layoutRouteImport } from './routes/_dashboard/__layo
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as Dashboard_layoutIndexRouteImport } from './routes/_dashboard/__layout.index'
+import { Route as Dashboard_layoutStudentsRouteImport } from './routes/_dashboard/__layout.students'
 import { Route as Dashboard_layoutSettingsRouteImport } from './routes/_dashboard/__layout.settings'
 import { Route as Dashboard_layoutQuestionsRouteImport } from './routes/_dashboard/__layout.questions'
 import { Route as Dashboard_layoutExamsRouteImport } from './routes/_dashboard/__layout.exams'
@@ -36,6 +37,12 @@ const Dashboard_layoutIndexRoute = Dashboard_layoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => Dashboard_layoutRoute,
 } as any)
+const Dashboard_layoutStudentsRoute =
+  Dashboard_layoutStudentsRouteImport.update({
+    id: '/students',
+    path: '/students',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
 const Dashboard_layoutSettingsRoute =
   Dashboard_layoutSettingsRouteImport.update({
     id: '/settings',
@@ -60,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/exams': typeof Dashboard_layoutExamsRoute
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
+  '/students': typeof Dashboard_layoutStudentsRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,6 +76,7 @@ export interface FileRoutesByTo {
   '/exams': typeof Dashboard_layoutExamsRoute
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
+  '/students': typeof Dashboard_layoutStudentsRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRoutesById {
@@ -78,13 +87,28 @@ export interface FileRoutesById {
   '/_dashboard/__layout/exams': typeof Dashboard_layoutExamsRoute
   '/_dashboard/__layout/questions': typeof Dashboard_layoutQuestionsRoute
   '/_dashboard/__layout/settings': typeof Dashboard_layoutSettingsRoute
+  '/_dashboard/__layout/students': typeof Dashboard_layoutStudentsRoute
   '/_dashboard/__layout/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/signup' | '/exams' | '/questions' | '/settings' | '/'
+  fullPaths:
+    | '/login'
+    | '/signup'
+    | '/exams'
+    | '/questions'
+    | '/settings'
+    | '/students'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/signup' | '/exams' | '/questions' | '/settings' | '/'
+  to:
+    | '/login'
+    | '/signup'
+    | '/exams'
+    | '/questions'
+    | '/settings'
+    | '/students'
+    | '/'
   id:
     | '__root__'
     | '/_auth/login'
@@ -93,6 +117,7 @@ export interface FileRouteTypes {
     | '/_dashboard/__layout/exams'
     | '/_dashboard/__layout/questions'
     | '/_dashboard/__layout/settings'
+    | '/_dashboard/__layout/students'
     | '/_dashboard/__layout/'
   fileRoutesById: FileRoutesById
 }
@@ -132,6 +157,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Dashboard_layoutIndexRouteImport
       parentRoute: typeof Dashboard_layoutRoute
     }
+    '/_dashboard/__layout/students': {
+      id: '/_dashboard/__layout/students'
+      path: '/students'
+      fullPath: '/students'
+      preLoaderRoute: typeof Dashboard_layoutStudentsRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
     '/_dashboard/__layout/settings': {
       id: '/_dashboard/__layout/settings'
       path: '/settings'
@@ -160,6 +192,7 @@ interface Dashboard_layoutRouteChildren {
   Dashboard_layoutExamsRoute: typeof Dashboard_layoutExamsRoute
   Dashboard_layoutQuestionsRoute: typeof Dashboard_layoutQuestionsRoute
   Dashboard_layoutSettingsRoute: typeof Dashboard_layoutSettingsRoute
+  Dashboard_layoutStudentsRoute: typeof Dashboard_layoutStudentsRoute
   Dashboard_layoutIndexRoute: typeof Dashboard_layoutIndexRoute
 }
 
@@ -167,6 +200,7 @@ const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
   Dashboard_layoutExamsRoute: Dashboard_layoutExamsRoute,
   Dashboard_layoutQuestionsRoute: Dashboard_layoutQuestionsRoute,
   Dashboard_layoutSettingsRoute: Dashboard_layoutSettingsRoute,
+  Dashboard_layoutStudentsRoute: Dashboard_layoutStudentsRoute,
   Dashboard_layoutIndexRoute: Dashboard_layoutIndexRoute,
 }
 

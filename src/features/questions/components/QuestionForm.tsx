@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import QuestionInputChoice from './QuestionInputChoice'
 import type { ChoicesType, QuestionsType } from '@/shared/types'
@@ -61,10 +61,20 @@ export default function QuestionForm({
       const newQ = { ...data, id: questionsLength + 1 }
       console.log(newQ)
       setQuestionsList((prev) => [...prev, newQ])
-      // reset()
+      setShowSuccess(true)
+      reset()
       setChoices(DEFAULT_CHOICES)
     }
   }
+  useEffect(() => {
+    let timer: number
+    if (showSuccess) {
+      timer = setTimeout(() => {
+        setShowSuccess(false)
+        return () => clearTimeout(timer)
+      }, 1000)
+    }
+  }, [showSuccess])
 
   function handleReset() {
     reset()
@@ -99,7 +109,7 @@ export default function QuestionForm({
                   : 'opacity-0 -translate-y-2'
               }`}
             >
-              Successfully
+              Successfully Created
               {/* {type === 'edit' ? 'updated' : 'created'} */}
             </div>
             {errors.correctAnswer && (

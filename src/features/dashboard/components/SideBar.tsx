@@ -7,6 +7,7 @@ export default function SideBar() {
       <div className="flex flex-col gap-5 mt-10">
         <SideBarLink title="Exams" />
         <SideBarLink title="Questions" />
+        <SideBarLink title="Students" />
       </div>
     </aside>
   )

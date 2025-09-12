@@ -51,6 +51,7 @@ export default function ExamsForm({
 
   return (
     <>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Submit Exam</h1>
       <SuccessNotification showSuccess={showSuccess} />
 
       <form onSubmit={handleSubmit(onSubmit)}>

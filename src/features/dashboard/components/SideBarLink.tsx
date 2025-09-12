@@ -5,6 +5,7 @@ type Props = {
 }
 
 export default function SideBarLink({ title }: Props) {
+  const newLink = `/${title.toLowerCase()}`
   return (
     <div>
       <Link
@@ -12,7 +13,7 @@ export default function SideBarLink({ title }: Props) {
           'text-white text-xl hover:text-[#6cb3cf] transition duration-300 ease-in-out'
         }
         activeProps={{ className: 'text-red-500 underline' }}
-        to={`/${title.toLowerCase()}` as any}
+        to={newLink}
       >
         {title}
       </Link>

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { users } from '../../../data'
 import FooterLink from './FooterLink'
 import SubmitButton from './SubmitButton'
+import ErrorMsg from '@/shared/ErrorMsg'
 
 export default function LoginForm() {
   const {
@@ -38,11 +39,11 @@ export default function LoginForm() {
   return (
     <>
       {errors.username && errors.username.type !== 'required' && (
-        <h1 className="text-red-500">{errors.username.message as string}</h1>
+        <ErrorMsg msg={errors.username.message as string} />
       )}
       <form method="POST" onSubmit={handleSubmit(onSubmit)}>
         {errors.username && errors.username.type === 'required' && (
-          <h1 className="text-red-500">{errors.username.message as string}</h1>
+          <ErrorMsg msg={errors.username.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.username ? 'border-red-500' : ''}`}
@@ -50,7 +51,7 @@ export default function LoginForm() {
           placeholder="Username"
         />
         {errors.password && (
-          <h1 className="text-red-500">{errors.password.message as string}</h1>
+          <ErrorMsg msg={errors.password.message as string} />
         )}
         <input
           className={`${inputStyle} ${errors.password ? 'border-red-500' : ''}`}

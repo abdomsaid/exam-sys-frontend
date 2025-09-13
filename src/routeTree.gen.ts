@@ -17,6 +17,7 @@ import { Route as Dashboard_layoutStudentsRouteImport } from './routes/_dashboar
 import { Route as Dashboard_layoutSettingsRouteImport } from './routes/_dashboard/__layout.settings'
 import { Route as Dashboard_layoutQuestionsRouteImport } from './routes/_dashboard/__layout.questions'
 import { Route as Dashboard_layoutExamsRouteImport } from './routes/_dashboard/__layout.exams'
+import { Route as Dashboard_layoutCurrentexamsRouteImport } from './routes/_dashboard/__layout.currentexams'
 
 const Dashboard_layoutRoute = Dashboard_layoutRouteImport.update({
   id: '/_dashboard/__layout',
@@ -60,10 +61,17 @@ const Dashboard_layoutExamsRoute = Dashboard_layoutExamsRouteImport.update({
   path: '/exams',
   getParentRoute: () => Dashboard_layoutRoute,
 } as any)
+const Dashboard_layoutCurrentexamsRoute =
+  Dashboard_layoutCurrentexamsRouteImport.update({
+    id: '/currentexams',
+    path: '/currentexams',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
+  '/currentexams': typeof Dashboard_layoutCurrentexamsRoute
   '/exams': typeof Dashboard_layoutExamsRoute
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
@@ -73,6 +81,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
+  '/currentexams': typeof Dashboard_layoutCurrentexamsRoute
   '/exams': typeof Dashboard_layoutExamsRoute
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
@@ -84,6 +93,7 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/signup': typeof AuthSignupRoute
   '/_dashboard/__layout': typeof Dashboard_layoutRouteWithChildren
+  '/_dashboard/__layout/currentexams': typeof Dashboard_layoutCurrentexamsRoute
   '/_dashboard/__layout/exams': typeof Dashboard_layoutExamsRoute
   '/_dashboard/__layout/questions': typeof Dashboard_layoutQuestionsRoute
   '/_dashboard/__layout/settings': typeof Dashboard_layoutSettingsRoute
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/login'
     | '/signup'
+    | '/currentexams'
     | '/exams'
     | '/questions'
     | '/settings'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/signup'
+    | '/currentexams'
     | '/exams'
     | '/questions'
     | '/settings'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/signup'
     | '/_dashboard/__layout'
+    | '/_dashboard/__layout/currentexams'
     | '/_dashboard/__layout/exams'
     | '/_dashboard/__layout/questions'
     | '/_dashboard/__layout/settings'
@@ -185,10 +198,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Dashboard_layoutExamsRouteImport
       parentRoute: typeof Dashboard_layoutRoute
     }
+    '/_dashboard/__layout/currentexams': {
+      id: '/_dashboard/__layout/currentexams'
+      path: '/currentexams'
+      fullPath: '/currentexams'
+      preLoaderRoute: typeof Dashboard_layoutCurrentexamsRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
   }
 }
 
 interface Dashboard_layoutRouteChildren {
+  Dashboard_layoutCurrentexamsRoute: typeof Dashboard_layoutCurrentexamsRoute
   Dashboard_layoutExamsRoute: typeof Dashboard_layoutExamsRoute
   Dashboard_layoutQuestionsRoute: typeof Dashboard_layoutQuestionsRoute
   Dashboard_layoutSettingsRoute: typeof Dashboard_layoutSettingsRoute
@@ -197,6 +218,7 @@ interface Dashboard_layoutRouteChildren {
 }
 
 const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
+  Dashboard_layoutCurrentexamsRoute: Dashboard_layoutCurrentexamsRoute,
   Dashboard_layoutExamsRoute: Dashboard_layoutExamsRoute,
   Dashboard_layoutQuestionsRoute: Dashboard_layoutQuestionsRoute,
   Dashboard_layoutSettingsRoute: Dashboard_layoutSettingsRoute,

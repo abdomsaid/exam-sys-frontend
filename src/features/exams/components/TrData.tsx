@@ -1,11 +1,13 @@
-import type { ExamType, StateType } from '@/shared/types'
+import type { ExamType, StateType, User } from '@/shared/types'
 
 type Exam = {
   exam: ExamType
-  handleConfirmation: (type: StateType['type'], id: StateType['id']) => void
+  handleConfirmation?: (type: StateType['type'], id: StateType['id']) => void
 }
 
 export function TrData({ exam, handleConfirmation }: Exam) {
+  const user = JSON.parse(localStorage.getItem('user') as string) as User
+
   const tdStyle = 'px-4 py-2 border-b'
   const buttonStyle = 'text-white px-3 py-1 rounded-md'
 
@@ -16,12 +18,20 @@ export function TrData({ exam, handleConfirmation }: Exam) {
       <td className={tdStyle}>{exam.numOfQs}</td>
       <td className={tdStyle}>{exam.duration} mins</td>
       <td className={`${tdStyle} flex space-x-2`}>
-        <button
-          onClick={() => handleConfirmation('delete', exam.id)}
-          className={`bg-red-500 ${buttonStyle} hover:bg-red-600 transition-colors duration-200`}
-        >
-          X
-        </button>
+        {user.role === 'admin' ? (
+          <button
+            onClick={() => handleConfirmation?.('delete', exam.id)}
+            className={`bg-red-500 ${buttonStyle} hover:bg-red-600 transition-colors duration-200`}
+          >
+            X
+          </button>
+        ) : (
+          <button
+            className={`bg-blue-500 ${buttonStyle} hover:bg-blue-600 transition-colors duration-200`}
+          >
+            Take Exams
+          </button>
+        )}
       </td>
     </tr>
   )

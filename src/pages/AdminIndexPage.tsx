@@ -15,7 +15,6 @@ export default function AdminIndexPage() {
         </p>
       </div>
 
-      {/* Action Cards */}
       <div className="grid md:grid-cols-3 gap-6">
         <Link
           to="/exams"
@@ -25,7 +24,7 @@ export default function AdminIndexPage() {
             📑
           </div>
           <h2 className="text-xl font-semibold text-gray-800 group-hover:text-blue-600">
-            Add Exams
+            Add Exams or Delete Exams
           </h2>
         </Link>
 
@@ -37,7 +36,7 @@ export default function AdminIndexPage() {
             ✍️
           </div>
           <h2 className="text-xl font-semibold text-gray-800 group-hover:text-green-600">
-            Add Questions
+            Add or delete Questions
           </h2>
         </Link>
 

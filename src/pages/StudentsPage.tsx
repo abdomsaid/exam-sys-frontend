@@ -30,19 +30,24 @@ export default function StudentsPage() {
   return (
     <div className=" w-[75%] px-5 ">
       <h1 className="font-bold text-[2rem] pl-3 text-[#333] mb-6">Students</h1>
-      <div className="w-[50%] p-6  border-2 border-gray-200 rounded-xl">
-        {studentList.map((student) => {
-          if (student.role === 'student') {
-            return (
-              <StudentsListElement
-                student={student}
-                key={student.username}
-                onExpel={handleExpel}
-              />
-            )
-          }
-        })}
-      </div>
+
+      {studentList.length === 0 ? (
+        <h1 className="font-bold text-xl text-[#333] mx-7">No students</h1>
+      ) : (
+        <div className="w-[50%] p-6  border-2 border-gray-200 rounded-xl">
+          {studentList.map((student) => {
+            if (student.role === 'student') {
+              return (
+                <StudentsListElement
+                  student={student}
+                  key={student.username}
+                  onExpel={handleExpel}
+                />
+              )
+            }
+          })}
+        </div>
+      )}
     </div>
   )
 }

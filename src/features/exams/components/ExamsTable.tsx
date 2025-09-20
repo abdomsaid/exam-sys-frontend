@@ -6,6 +6,7 @@ import type { ExamType, StateType } from '@/shared/types'
 import Conformation from '@/shared/Confirmation'
 
 type Props = {
+  type?: 'take'
   examsList: Array<ExamType>
   setExamsList: React.Dispatch<React.SetStateAction<Array<ExamType>>>
 }

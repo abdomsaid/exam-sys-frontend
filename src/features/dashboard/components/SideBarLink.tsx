@@ -5,7 +5,8 @@ type Props = {
 }
 
 export default function SideBarLink({ title }: Props) {
-  const newLink = `/${title.toLowerCase()}`
+  const newLink = title.replace(' ', '').toLowerCase()
+
   return (
     <div>
       <Link

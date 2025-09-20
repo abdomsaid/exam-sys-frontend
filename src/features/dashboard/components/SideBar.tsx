@@ -1,8 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import SideBarLink from './SideBarLink'
-import type { userType } from '@/shared/types'
-
-type User = Omit<userType, 'password'>
+import type { User } from '@/shared/types'
 
 export default function SideBar() {
   const user = JSON.parse(localStorage.getItem('user') || 'null') as User
@@ -21,7 +19,7 @@ export default function SideBar() {
           </>
         ) : (
           <>
-            <SideBarLink title="currentexams" />
+            <SideBarLink title="Current Exams" />
           </>
         )}
       </div>

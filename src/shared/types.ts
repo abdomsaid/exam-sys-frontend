@@ -36,3 +36,5 @@ export type userType = {
   password: string
   role: 'admin' | 'student'
 }
+
+export type User = Omit<userType, 'password'>

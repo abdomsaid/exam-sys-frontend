@@ -15,10 +15,10 @@ export default function StudentIndexPage() {
       </div>
 
       {/* Action Cards */}
-      <div className="grid md:grid-cols-2 gap-6 justify-center w-auto mx-auto">
+      <div className="flex justify-center w-auto mx-auto ">
         <Link
           to="/currentexams"
-          className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition duration-300 bg-amber-600"
+          className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition duration-300 "
         >
           <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 transition-transform">
             📝
@@ -26,9 +26,6 @@ export default function StudentIndexPage() {
           <h2 className="text-xl font-semibold text-gray-800 group-hover:text-indigo-600">
             Check Current Exams
           </h2>
-          <p className="mt-2 text-sm text-gray-500">
-            View and take the exams assigned to you.
-          </p>
         </Link>
       </div>
     </div>

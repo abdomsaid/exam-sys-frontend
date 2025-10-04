@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router'
 import type { ExamType, StateType, User } from '@/shared/types'
 
 type Exam = {
@@ -6,10 +7,15 @@ type Exam = {
 }
 
 export function TrData({ exam, handleConfirmation }: Exam) {
+  const navigation = useNavigate()
   const user = JSON.parse(localStorage.getItem('user') as string) as User
 
   const tdStyle = 'px-4 py-2 border-b'
   const buttonStyle = 'text-white px-3 py-1 rounded-md'
+
+  const onTakeExam = (id: number): void => {
+    window.location.href = `/exam/${id}`
+  }
 
   return (
     <tr className="hover:bg-gray-100">
@@ -28,6 +34,7 @@ export function TrData({ exam, handleConfirmation }: Exam) {
         ) : (
           <button
             className={`bg-blue-500 ${buttonStyle} hover:bg-blue-600 transition-colors duration-200`}
+            onClick={() => onTakeExam(exam.id)}
           >
             Take Exams
           </button>

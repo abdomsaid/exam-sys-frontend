@@ -23,7 +23,7 @@ export type QuestionsType = {
   question: string
   choices: Array<string>
   correctAnswer: string
-  id: number
+  id: string
 }
 
 export type ChoicesType = {

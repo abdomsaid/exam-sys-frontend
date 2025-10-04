@@ -13,6 +13,7 @@ import { Route as Dashboard_layoutRouteImport } from './routes/_dashboard/__layo
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as Dashboard_layoutIndexRouteImport } from './routes/_dashboard/__layout.index'
+import { Route as ExamExamIdRouteImport } from './routes/_exam/exam/$id'
 import { Route as Dashboard_layoutStudentsRouteImport } from './routes/_dashboard/__layout.students'
 import { Route as Dashboard_layoutSettingsRouteImport } from './routes/_dashboard/__layout.settings'
 import { Route as Dashboard_layoutQuestionsRouteImport } from './routes/_dashboard/__layout.questions'
@@ -37,6 +38,11 @@ const Dashboard_layoutIndexRoute = Dashboard_layoutIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => Dashboard_layoutRoute,
+} as any)
+const ExamExamIdRoute = ExamExamIdRouteImport.update({
+  id: '/_exam/exam/$id',
+  path: '/exam/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const Dashboard_layoutStudentsRoute =
   Dashboard_layoutStudentsRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
   '/students': typeof Dashboard_layoutStudentsRoute
+  '/exam/$id': typeof ExamExamIdRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRoutesByTo {
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/questions': typeof Dashboard_layoutQuestionsRoute
   '/settings': typeof Dashboard_layoutSettingsRoute
   '/students': typeof Dashboard_layoutStudentsRoute
+  '/exam/$id': typeof ExamExamIdRoute
   '/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRoutesById {
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/_dashboard/__layout/questions': typeof Dashboard_layoutQuestionsRoute
   '/_dashboard/__layout/settings': typeof Dashboard_layoutSettingsRoute
   '/_dashboard/__layout/students': typeof Dashboard_layoutStudentsRoute
+  '/_exam/exam/$id': typeof ExamExamIdRoute
   '/_dashboard/__layout/': typeof Dashboard_layoutIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/questions'
     | '/settings'
     | '/students'
+    | '/exam/$id'
     | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/questions'
     | '/settings'
     | '/students'
+    | '/exam/$id'
     | '/'
   id:
     | '__root__'
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/_dashboard/__layout/questions'
     | '/_dashboard/__layout/settings'
     | '/_dashboard/__layout/students'
+    | '/_exam/exam/$id'
     | '/_dashboard/__layout/'
   fileRoutesById: FileRoutesById
 }
@@ -138,6 +150,7 @@ export interface RootRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
   Dashboard_layoutRoute: typeof Dashboard_layoutRouteWithChildren
+  ExamExamIdRoute: typeof ExamExamIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,6 +182,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof Dashboard_layoutIndexRouteImport
       parentRoute: typeof Dashboard_layoutRoute
+    }
+    '/_exam/exam/$id': {
+      id: '/_exam/exam/$id'
+      path: '/exam/$id'
+      fullPath: '/exam/$id'
+      preLoaderRoute: typeof ExamExamIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_dashboard/__layout/students': {
       id: '/_dashboard/__layout/students'
@@ -233,6 +253,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
   Dashboard_layoutRoute: Dashboard_layoutRouteWithChildren,
+  ExamExamIdRoute: ExamExamIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

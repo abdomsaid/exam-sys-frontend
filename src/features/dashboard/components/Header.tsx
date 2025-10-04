@@ -1,10 +1,10 @@
-import { useNavigate } from '@tanstack/react-router'
+import { redirect, useNavigate } from '@tanstack/react-router'
 
 export default function Header() {
   const navigation = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('user')
-    navigation({ to: '/login' })
+    window.location.href = '/login'
   }
   const user = JSON.parse(localStorage.getItem('user') as string)
 

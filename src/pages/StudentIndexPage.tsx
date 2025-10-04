@@ -14,7 +14,6 @@ export default function StudentIndexPage() {
         </p>
       </div>
 
-      {/* Action Cards */}
       <div className="flex justify-center w-auto mx-auto ">
         <Link
           to="/currentexams"

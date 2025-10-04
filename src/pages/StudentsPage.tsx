@@ -34,7 +34,7 @@ export default function StudentsPage() {
       {studentList.length === 0 ? (
         <h1 className="font-bold text-xl text-[#333] mx-7">No students</h1>
       ) : (
-        <div className="w-[50%] p-6  border-2 border-gray-200 rounded-xl">
+        <div className="w-[50%] p-6 border-2 border-gray-200 rounded-xl">
           {studentList.map((student) => {
             if (student.role === 'student') {
               return (
